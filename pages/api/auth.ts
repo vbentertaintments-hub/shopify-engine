@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+
   const { shop } = req.query;
 
   const clientId = process.env.SHOPIFY_API_KEY;
   const scopes = process.env.SHOPIFY_SCOPES;
   const appUrl = process.env.SHOPIFY_APP_URL;
 
-  // DEBUG OUTPUT
   if (!shop) {
     return res.status(200).json({
       message: "Debug environment check",

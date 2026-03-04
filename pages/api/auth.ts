@@ -1,19 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req, res) {
   const { shop } = req.query;
 
   if (!shop) {
-    res.status(400).json({ error: "Missing shop parameter" });
-    return;
+    return res.status(400).json({ error: "Missing shop parameter" });
   }
 
-  const apiKey = process.env.SHOPIFY_API_KEY;
+  const clientId = process.env.SHOPIFY_API_KEY;
   const scopes = process.env.SHOPIFY_SCOPES;
   const redirectUri = `${process.env.SHOPIFY_APP_URL}/api/callback`;
 
-  const installUrl =
-    `https://${shop}/admin/oauth/authorize?client_id=${apiKey}&scope=${scopes}&redirect_uri=${redirectUri}`;
+  const installUrl = `https://${shop}/admin/oauth/authorize?client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
 
   res.redirect(installUrl);
 }

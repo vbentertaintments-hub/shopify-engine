@@ -1,7 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.json({
+export default function handler(req, res) {
+  res.status(200).json({
     success: true,
     message: "OAuth callback working"
   });
